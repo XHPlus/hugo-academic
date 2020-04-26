@@ -2,6 +2,30 @@
 
 {{- $taxonomy := "authors" }}
 {{ if .Param $taxonomy }}
+  {{ with .Param $taxonomy }}
+      {{- delimit . ", " -}}
+  {{- end -}}
+{{- end -}}
+
+<!--
+method 1
+
+{{- $taxonomy := "authors" }}
+{{ if .Param $taxonomy }}
+  {{ $link_authors := site.Params.link_authors | default true }}
+  {{ range $index, $value := .Param $taxonomy }}
+    {{- /* Check if a profile was created for this user. */ -}}
+
+    {{- if gt $index 0 }}, {{ end -}}
+    {{ $value | markdownify }}
+  {{- end -}}
+{{- end -}}
+-->
+<!--
+original method
+
+{{- $taxonomy := "authors" }}
+{{ if .Param $taxonomy }}
   {{ $link_authors := site.Params.link_authors | default true }}
   {{ range $index, $value := (.GetTerms $taxonomy) }}
     {{- /* Check if a profile was created for this user. */ -}}
@@ -17,3 +41,4 @@
     </span>
   {{- end -}}
 {{- end -}}
+-->
