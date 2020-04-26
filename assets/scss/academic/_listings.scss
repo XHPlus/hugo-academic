@@ -70,3 +70,13 @@
     max-width: 80px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .media.stream-item .ml-3 {
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    text-align:center;
+    object-fit: cover;
+  }
+}
